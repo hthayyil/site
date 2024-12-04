@@ -1,0 +1,42 @@
+{
+  "files": {
+    "main.css": "/static/css/main.74aa3929.css",
+    "main.js": "/static/js/main.dc66c836.js",
+    "static/media/sub-1.jpg": "/static/media/sub-1.ee13395495b38dc10743.jpg",
+    "static/media/sampler-1.png": "/static/media/sampler-1.d7b41848ff9492203019.png",
+    "static/media/dm-4.JPG": "/static/media/dm-4.5e68515cdd41ff98c154.JPG",
+    "static/media/dm-3.JPG": "/static/media/dm-3.df8180cddd558c10ae55.JPG",
+    "static/media/dm-2.JPG": "/static/media/dm-2.779c2d27b7c356216668.JPG",
+    "static/media/dm-5.JPG": "/static/media/dm-5.3bff81eda9d5d98da236.JPG",
+    "static/media/sampler-4.png": "/static/media/sampler-4.dd3bb6c0e1b9350c8d79.png",
+    "static/media/sampler-3.png": "/static/media/sampler-3.a081a5ce3e2b542caf14.png",
+    "static/media/tri-6.jpeg": "/static/media/tri-6.a37ae10eb7ca60deac89.jpeg",
+    "static/media/sub-2.jpeg": "/static/media/sub-2.b3408a5ff2cb7a34ab90.jpeg",
+    "static/media/sub-3.jpeg": "/static/media/sub-3.89f4d6ea9181d0a1e4d6.jpeg",
+    "static/media/tri-5.jpeg": "/static/media/tri-5.18f610d6557e114e524f.jpeg",
+    "static/media/dm-1.JPG": "/static/media/dm-1.fb98aafd14e9cd4c990f.JPG",
+    "static/media/tri-3.jpeg": "/static/media/tri-3.506699e5ad051a5b9093.jpeg",
+    "static/media/calc-gif.gif": "/static/media/calc-gif.06baf152560941be7eb0.gif",
+    "static/media/arp-gif.gif": "/static/media/arp-gif.6170dc0d1f1e011356c0.gif",
+    "static/media/tri-4.jpg": "/static/media/tri-4.5ca010d04dea8c36b98b.jpg",
+    "static/media/arp-3.png": "/static/media/arp-3.8914b6db266afea28e57.png",
+    "static/media/tri-2.jpg": "/static/media/tri-2.67d1f29a72f4692a1076.jpg",
+    "static/media/sister-triangle-inverted.jpg": "/static/media/sister-triangle-inverted.e414cd1339350021cb7c.jpg",
+    "static/media/tri-1.jpg": "/static/media/tri-1.ebc340a107094518757b.jpg",
+    "static/media/calc-1.jpg": "/static/media/calc-1.49f4e77b147e5542bb57.jpg",
+    "static/media/calc-2.jpg": "/static/media/calc-2.8526de0ab49223ad279f.jpg",
+    "static/media/arp-1.png": "/static/media/arp-1.7d28e780c9471e95f92d.png",
+    "static/media/sampler-2.jpg": "/static/media/sampler-2.972903cbfca532e12072.jpg",
+    "static/media/arp-2.png": "/static/media/arp-2.a9794151967b82a85147.png",
+    "static/media/calc-5.jpg": "/static/media/calc-5.4aa694a30e1cbe771c83.jpg",
+    "static/media/calc-4.jpg": "/static/media/calc-4.33a993c15f2312d64067.jpg",
+    "static/media/calc-3.jpg": "/static/media/calc-3.4b1b682c7cd3d8cf883c.jpg",
+    "index.html": "/index.html",
+    "main.74aa3929.css.map": "/static/css/main.74aa3929.css.map",
+    "main.dc66c836.js.map": "/static/js/main.dc66c836.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.74aa3929.css",
+    "static/js/main.dc66c836.js"
+  ]
+}
