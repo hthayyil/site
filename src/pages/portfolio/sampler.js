@@ -53,18 +53,23 @@ const Sampler = ({ openModal }) => {
         </div>
 
 
-        <Row>
+        <Row  style={{
+    display: 'flex',
+    justifyContent: 'space-between', // Adds spacing between items
+    alignItems: 'center', // Ensures items are vertically aligned
+  }}>
           {samper_images.slice(1, 4).map((image, index) => (
-            <div className="po_item" key={index}>
+            <div key={index} style={{ flex: '1 1 auto', maxWidth: '33%' }}>
               <img
                 src={image}
                 alt={`sampler ${index + 3}`}
-                // className="full-width-img"
+                className="sampler-image"
                 onClick={() => openModal(image)}
               />
             </div>
           ))}
         </Row>
+       
       </div>
     </>
   );

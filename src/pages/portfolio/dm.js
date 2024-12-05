@@ -19,6 +19,15 @@ const DM = ({ openModal }) => {
           <h4 style={{ fontWeight: "bold", fontSize: "14px" }}>
           Drone Machines are open source, industrial strength machines, made for hands on control of software and hardware. The original idea sprang from a desire to create live electronic music, where physical interaction with tools and mechanisms would directly control the sounds. The performance, quality of materials, and components used to fabricate these machines are as important as the sound itself. Drone Machines forge a connection with material and mechanical motion creating a human/machine interface for your audience to experience.
           </h4>
+          <button className="download-button">
+            <a
+  href="https://dronemachines.com/"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Learn more
+</a>
+          </button>
         </div>
         <div className="po_item_big" >
         <img
@@ -28,6 +37,7 @@ const DM = ({ openModal }) => {
           onClick={() => openModal(drone_machine_images[0])}
         />
         </div>
+        
       </div>
 
         <div className="po_item_big" >
@@ -37,6 +47,7 @@ const DM = ({ openModal }) => {
           className="full-width-img"
           onClick={() => openModal(drone_machine_images[1])}
         />
+                <h5 style={{ fontWeight: "bold", fontSize: "12px" }}>ARCA playing Drone Machines at the Park Avenue Armory, NYC 2023</h5>
         </div>
         
         <div className="po_item_big" >

@@ -44,8 +44,9 @@ const Calculator = ({ openModal }) => {
           </h4>
           {/* Download Instructions Button */}
           <button onClick={handleDownload} className="download-button">
-            Download Instructions
+            Download Instructions 
           </button>
+          
         </div>
  
       <Row>

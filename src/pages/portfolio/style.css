@@ -37,6 +37,13 @@
     cursor: zoom-in
 }
 
+.sampler-image {
+  height: auto; /* Maintains aspect ratio */
+  width: 100%;
+  cursor: zoom-in;
+  object-fit: cover; 
+}
+
 .po_item_med {
    
     display: inline-block;
