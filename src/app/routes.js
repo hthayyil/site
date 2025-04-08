@@ -34,7 +34,6 @@ function AppRoutes() {
   return (
     <div className="s_c">
       <AnimatedRoutes />
-      <Socialicons />
     </div>
   );
 }

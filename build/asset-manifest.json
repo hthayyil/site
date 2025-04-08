@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.0ac6e495.css",
-    "main.js": "/static/js/main.92c56199.js",
+    "main.js": "/static/js/main.89bd5b67.js",
     "static/media/sub-1.jpg": "/static/media/sub-1.ee13395495b38dc10743.jpg",
     "static/media/sampler-1.png": "/static/media/sampler-1.d7b41848ff9492203019.png",
     "static/media/dm-4.JPG": "/static/media/dm-4.5e68515cdd41ff98c154.JPG",
@@ -33,10 +33,10 @@
     "static/media/calc-3.jpg": "/static/media/calc-3.4b1b682c7cd3d8cf883c.jpg",
     "index.html": "/index.html",
     "main.0ac6e495.css.map": "/static/css/main.0ac6e495.css.map",
-    "main.92c56199.js.map": "/static/js/main.92c56199.js.map"
+    "main.89bd5b67.js.map": "/static/js/main.89bd5b67.js.map"
   },
   "entrypoints": [
     "static/css/main.0ac6e495.css",
-    "static/js/main.92c56199.js"
+    "static/js/main.89bd5b67.js"
   ]
 }
