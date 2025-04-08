@@ -2,7 +2,7 @@
     "name": "sisterengineering",
     "version": "0.1.0",
     "private": false,
-    "homepage": "https://www.sisterengineering.world",
+    "homepage": "https://hthayyil.github.io/site",
     "dependencies": {
         "bootstrap": "^5.2.3",
         "emailjs-com": "^3.2.0",
@@ -24,7 +24,7 @@
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "predeploy": "yarn build",
-        "deploy": "gh-pages -d build"
+        "deploy": "gh-pages -d build -r git@github.com:hthayyil/site.git"
     },
     "eslintConfig": {
         "extends": [
