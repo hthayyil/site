@@ -1,12 +1,13 @@
 .po_items_ho {
     display: flex;
     justify-content: space-between; /* Spacing between items */
-    /* gap: 20px; Adjust gap if needed */
+    flex-wrap: wrap;
+    gap: 20px;
   }
   
 
 .po_item {
-    flex: 1; /* Ensure items take equal space */
+    flex: 1 ; /* Ensure items take equal space */
     /* display: inline-block; */
     width: 50%;
     text-align: center;
@@ -34,9 +35,17 @@
     width: 100%;
     height: 500px; 
     object-fit: cover; 
+    transition: transform 2s ease;
     cursor: zoom-in
 }
-
+/* For mobile screens */
+@media (max-width: 767px) {
+  .po_item img {
+    width: 100%;
+    height: auto; /* Height will be auto on mobile to maintain aspect ratio */
+    object-fit: contain; /* Ensure the image fits the container without distortion */
+  }
+}
 .sampler-image {
   height: auto; /* Maintains aspect ratio */
   width: 100%;
@@ -94,6 +103,18 @@
     position: relative;
   }
 
+  
+  @media (min-width: 768px) {
+    .po_item,
+    .po_item_med {
+      flex: 1 1 28%; /* Two columns on tablets and up */
+    }
+  
+    .po_item_big {
+      flex: 1 1 50%; /* Slightly larger */
+    }
+  }
+  
 
 .po_item_row img {
     width: 100%; /* Full width of the container */
@@ -212,7 +233,7 @@
     width: 100%;  /* Full width of the container */
     height: auto; /* Adjust height automatically */
     position: relative; /* Needed for z-index positioning */
-    object-fit: "cover";
+    object-fit: cover;
     object-position: "center";
   }
 
@@ -221,6 +242,8 @@
   }
   
   .modal {
+
+    border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -233,6 +256,9 @@
   }
   
   .full-screen-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
     max-width: 60%;
     max-height: 60%;
   }
@@ -248,7 +274,7 @@
     cursor: pointer;
   }
   .text-box {
-    position: "absolute";
+
     width: 400px; /* Set a fixed width for the text box */
     padding: 0px; /* Add some padding */
     background-color: #000000; /* Background color for the box */
@@ -256,13 +282,37 @@
     /* z-index: 1;  */
   }
   
-  .text-container {
-    margin-top: 10px; /* Space above the text section */
-    margin-bottom: 50px; /* Space above the text section */
-    display: flex; /* Use flexbox for alignment */
-    justify-content: flex-start; /* Align to the right */
-    position: relative; /* Needed for z-index positioning */
+  .About-header {
+    padding: 1rem;
+    max-width: 100%;
+
+    overflow-x: hidden;
+    box-sizing: border-box;
   }
+  
+.text-container {
+  margin-top: 10px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: row; /* side-by-side by default (desktop) */
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* On screens smaller than 768px, stack text and images */
+@media (max-width: 767px) {
+  .text-container {
+    flex-direction: column; /* Stack vertically */
+  }
+
+  .text-box {
+    width: 100%; /* Take full width on mobile */
+  }
+
+  .po_item {
+    width: 100%; /* Images take full width on mobile */
+  }
+}
 
   .download-button {
     padding: 5px 10px; /* Adjusted padding for smaller size */
@@ -277,3 +327,27 @@
     text-align: center; /* Center text */
     font-size: 12px; /* Smaller font size */
   }
+  /* Ensure iframe is responsive */
+.iframe-container {
+  position: relative;
+  width: 100%; /* Full width of its container */
+  padding-top: 56.25%; /* Aspect ratio of 16:9 (height/width = 9/16 = 0.5625) */
+  overflow: hidden;
+  background: black; /* Optional: Adds a black background */
+  border-radius: 8px; /* Optional: Adds rounded corners */
+  margin: 0 auto; /* Center the iframe container */
+}
+
+.iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none; /* Remove the default border */
+}
+@media (max-width: 768px) {
+  .iframe-container {
+    padding-top: 56.25%; /* 16:9 aspect ratio */
+  }
+}

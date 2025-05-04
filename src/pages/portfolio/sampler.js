@@ -41,17 +41,18 @@ const Sampler = ({ openModal }) => {
           </div>
           </div>
           <div className="po_item">
-            <iframe
-              src="https://player.vimeo.com/video/688613949?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-              width="700"
-              height="350"
-              frameborder="0"
-              allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
-              title="sisterengineering experiments10"
-            ></iframe>
-          </div>   
-        </div>
-
+      <div className="iframe-container">
+        <iframe
+          src="https://player.vimeo.com/video/688613949?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+          width="100%"  // Responsive width
+          height="auto"  // Responsive height
+          frameBorder="0"
+          allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+          title="sisterengineering experiments10"
+        ></iframe>
+      </div>
+    </div>
+  </div>
 
         <Row  style={{
     display: 'flex',

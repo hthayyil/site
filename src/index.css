@@ -1,6 +1,6 @@
 :root {
     --bg-color: #000000;
-    --primary-color: #0d0d0d;
+    --primary-color: #000000;
     --secondary-color: #fff;
     --text-color: #fff;
     --text-color-2: #fff;
@@ -21,6 +21,7 @@
 html,
 body {
     height: 100%;
+
 }
 
 body {
@@ -94,3 +95,4 @@ code {
 .color_sec {
     color: var(--secondary-color);
 }
+

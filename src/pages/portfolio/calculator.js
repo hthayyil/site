@@ -20,14 +20,23 @@ const Calculator = ({ openModal }) => {
        
       {/* </div> */}
 
-      <h2 className="mt-5" style={{ fontWeight: "bold", fontSize: "24px" }}>
+      {/* <h2 className="mt-5" style={{ fontWeight: "bold", fontSize: "24px" }}>
         THE POSTFIX OPERATOR
         <h5 style={{ fontWeight: "bold", fontSize: "10px" }}>2021</h5>
         <h6 style={{ fontWeight: "bold", fontSize: "10px" }}>
             Materials: 3.5" TFT LCD 480x320 HD color screen, gray smoked acrylic
             (1/8''); PLA, machine screws #4-40x1/2'', powered by Arduino Uno.
           </h6>
-      </h2>
+      </h2> */}
+<h2 className="mt-5" style={{ fontWeight: "bold", fontSize: "24px" }}>
+  THE POSTFIX OPERATOR
+</h2>
+<h5 style={{ fontWeight: "bold", fontSize: "10px" }}>2021</h5>
+<h6 style={{ fontWeight: "bold", fontSize: "10px" }}>
+Materials: 3.5" TFT LCD 480x320 HD color screen, gray smoked acrylic
+(1/8''); PLA, machine screws #4-40x1/2'', powered by Arduino Uno.
+</h6>
+
       <div className="text-container">
         <div className="text-box">
           <h4 style={{ fontWeight: "bold", fontSize: "14px" }}>
@@ -55,7 +64,7 @@ const Calculator = ({ openModal }) => {
               <img
                 src={image}
                 alt={`Calc ${index + 3}`}
-                className="full-width-img invert-image"
+                className="full-width-img invert-image img-fluid"
                 onClick={() => openModal(image)}
               />
             </div>
