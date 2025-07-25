@@ -227,9 +227,17 @@ export const Shop = () => {
                     style={{ width: "100%", height: "auto" }}
                   />
                 </div>
+                            {/* Product Description - Under both images */}
+            <div className="product-description">
+              <p>
+                <strong>Dimension:</strong> 6.4x34x14m<br/>
+                <strong>Materials:</strong> Reclaimed box elder wood, electronics, steel hardware.<br/>
+                <strong>Power source:</strong> USB cable included, 3v coin cell battery included
+              </p>
+            </div>
                 {/* Price Text */}
                 <div className="price-text">
-                  $444.00
+                  $444.44
                 </div>
                 {/* Shopify Buy Button Section */}
                 <div className="shopify-embed">
@@ -250,6 +258,7 @@ export const Shop = () => {
                 )}
               </div>
             </div>
+            
           </Col>
         </Row>
       </Container>

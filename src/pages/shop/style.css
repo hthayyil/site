@@ -55,6 +55,7 @@
     align-items: flex-start;
     gap: 7px;
     padding-left: 40px;
+    padding-bottom: 60px; /* Add bottom padding to prevent cutoff */
 }
 
 .left-column {
@@ -74,6 +75,7 @@
     display: flex;
     justify-content: flex-start; /* Align to left */
     margin-left: 2px; /* 2px gap from left edge of image */
+    margin-bottom: 60px; /* Add bottom margin to prevent cutoff */
 }
 
 .price-text {
@@ -83,6 +85,27 @@
     margin-left: 2px; /* Match the button alignment */
     margin-top: 10px;
     margin-bottom: 0; /* Removed bottom margin */
+}
+
+.product-description {
+    width: 100%;
+    margin-top: 4px;
+    padding-left: 0px; /* Align with shop-layout padding */
+    color: white;
+}
+
+.product-description h3 {
+    font-size: 12px; /* Changed to 12px */
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.product-description p {
+    font-size: 12px; /* Changed to 12px */
+    line-height: 1.6;
+    margin: 0;
+    color: white;
 }
 
 .image-row {
