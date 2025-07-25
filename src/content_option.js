@@ -1,6 +1,6 @@
 import inverted_synth from "./img/sister-triangle-inverted.jpg"
 
-import {calculator_images, arp_images, sampler_images, sub_images, tri_images, dm_images} from "./img/images.js";
+import {calculator_images, arp_images, sampler_images, sub_images, tri_images, dm_images, clock_images} from "./img/images.js";
 
 const logotext = "sister engineering";
 const meta = {
@@ -82,6 +82,7 @@ const synth_images=[tri_images.tri_1, tri_images.tri_2, tri_images.tri_3, tri_im
 const submarine_images=[sub_images.sub_1, sub_images.sub_2, sub_images.sub_3];
 const samper_images=[sampler_images.sampler_1, sampler_images.sampler_2, sampler_images.sampler_3, sampler_images.sampler_4];
 const drone_machine_images=[dm_images.dm_1, dm_images.dm_2, dm_images.dm_3, dm_images.dm_4, dm_images.dm_5];
+const clock_images_array=[clock_images.clock_1, clock_images.clock_2];
 
 const dataportfolio = [{
         img: calc_images[0],
@@ -167,6 +168,7 @@ export {
     submarine_images,
     samper_images,
     drone_machine_images,
+    clock_images_array,
     meta,
     dataabout,
     dataportfolio,

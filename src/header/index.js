@@ -16,6 +16,7 @@ const Headermain = () => {
             {logotext}
           </Link>
           <div className="d-flex align-items-center">
+            <Link to="/shop" className=" nav_ac">shop</Link>
           </div>
         </div>
         <div className="header-line"></div>

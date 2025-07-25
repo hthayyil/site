@@ -34,6 +34,9 @@ import dm_3 from "./drone-machines/dm-3.JPG"
 import dm_4 from "./drone-machines/dm-4.JPG"
 import dm_5 from "./drone-machines/dm-5.JPG"
 
+import clock_1 from "./clock/1.jpeg"
+import clock_2 from "./clock/2.jpeg"
+
 export const calculator_images = {
     calc_1,
     calc_2,
@@ -78,4 +81,9 @@ export const dm_images = {
     dm_3,
     dm_4,
     dm_5
+}
+
+export const clock_images = {
+    clock_1,
+    clock_2
 }

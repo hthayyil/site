@@ -1,0 +1,127 @@
+.shop-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.shopify-embed {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: center;
+}
+
+#product-component-1753459919659 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Clock Images Styling - Similar to portfolio po_item */
+.shop_clock_item {
+    width: auto; /* Let it size to content */
+    display: inline-block; /* Make it only as wide as its content */
+    text-align: left; /* Changed from center to left */
+    margin: 0; /* Removed auto margin that was centering them */
+    position: relative;
+    border: none;
+    transition: 0.9s ease;
+   
+}
+
+.shop_clock_item img {
+    width: 400px; /* Fixed width - 2x bigger */
+    max-width: 400px; /* Match the fixed width */
+    height: 100px; /* Keep the same height - 2x bigger */
+    object-fit: cover; 
+    transition: transform 2s ease;
+    cursor: pointer;
+    margin: 0; /* Remove auto margin that was centering */
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+/* For mobile screens */
+@media (max-width: 767px) {
+    .shop_clock_item img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+}
+
+/* Shop Layout - Clock images and button positioning */
+.shop-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    padding-left: 40px;
+}
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.right-column {
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0; /* Prevent the right column from shrinking */
+}
+
+.left-column .shopify-embed {
+    width: 400px; /* Match the clock image width */
+    max-width: 400px;
+    display: flex;
+    justify-content: flex-start; /* Align to left */
+    margin-left: 2px; /* 2px gap from left edge of image */
+}
+
+.price-text {
+    font-size: 16px;
+    font-weight: bold;
+    color: white; /* Changed to white */
+    margin-left: 2px; /* Match the button alignment */
+    margin-top: 10px;
+    margin-bottom: 0; /* Removed bottom margin */
+}
+
+.image-row {
+ 
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Changed from space-between to flex-start */
+    padding-left: 40px; /* Added 40px left padding as requested */
+    gap: 7px; /* Added gap instead of relying on justify-content spacing - increased by 2px */
+}
+
+/* Override Shopify Buy Button styles to make it more responsive */
+.shopify-buy__product {
+    max-width: 100% !important;
+    margin: 0 auto !important;
+}
+
+@media (max-width: 768px) {
+    .shopify-embed {
+        padding: 0 1rem;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .shopify-buy__product {
+        max-width: 100% !important;
+        margin-left: 0 !important;
+    }
+    
+    .shop-layout {
+        flex-direction: column;
+        gap: 20px;
+        padding-left: 20px;
+    }
+    
+    .left-column, .right-column {
+        width: 100%;
+    }
+    
+    .shop_clock_item {
+        width: 100%;
+    }
+}
