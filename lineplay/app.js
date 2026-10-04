@@ -17,11 +17,23 @@ palette.forEach((c,i)=>{const b=document.createElement('button');b.className='sw
 function resize(){const r=canvas.getBoundingClientRect(),d=devicePixelRatio||1;canvas.width=Math.round(r.width*d);canvas.height=Math.round(r.height*d);ctx.setTransform(d,0,0,d,0,0)}new ResizeObserver(resize).observe(canvas);
 function point(e){const r=canvas.getBoundingClientRect();return {x:Math.max(0,Math.min(1,(e.clientX-r.left)/r.width)),y:Math.max(0,Math.min(1,(e.clientY-r.top)/r.height))}}
 canvas.onpointerdown=async e=>{if(e.button!==0)return;canvas.setPointerCapture(e.pointerId);drawing=true;current={color,width:+$('brush').value,phase:Math.random()*6.28,points:[point(e)]};strokes.push(current);scoreDirty=true;update();const token=++liveToken;if(mode==='music'){try{await ensureAudio();if(drawing&&token===liveToken){liveReady=true;lastKick=-Infinity;lastTom=-Infinity;lastTomPitch=null;sound(current.points.at(-1).y,current.color);$('status').textContent='Drawing notes.'}}catch{$('status').textContent='Audio could not start. Try drawing again.'}}};
-canvas.onpointermove=e=>{if(drawing&&current){const samples=e.getCoalescedEvents?.()||[e];for(const sample of samples){const p=point(sample),q=current.points.at(-1);if(Math.hypot(p.x-q.x,p.y-q.y)>.002){current.points.push(p);scoreDirty=true;if(mode==='music'&&liveReady)sound(p.y,current.color)}}}};
+canvas.onpointermove=e=>{if(drawing&&current){const coalesced=e.getCoalescedEvents?.();const samples=coalesced?.length?coalesced:[e];for(const sample of samples){const p=point(sample),q=current.points.at(-1);if(Math.hypot(p.x-q.x,p.y-q.y)>.002){current.points.push(p);scoreDirty=true;if(mode==='music'&&liveReady)sound(p.y,current.color)}}}};
 function end(){drawing=false;current=null;liveReady=false;liveToken++;silence()}canvas.onpointerup=end;canvas.onpointercancel=end;canvas.onlostpointercapture=end;
 function update(){$('status').textContent=playing?'Playing notes — keep drawing to add more.':strokes.length?strokes.length+' line'+(strokes.length===1?'':'s')+' of possibility.':'Draw to hear notes, or press play to start.'}
 function silence(){if(voiceGain&&audio)voiceGain.forEach(g=>g.gain.setTargetAtTime(0,audio.currentTime,.025))}
-async function ensureAudio(){audio??=new(window.AudioContext||window.webkitAudioContext)();await audio.resume();if(!master){master=audio.createDynamicsCompressor();master.threshold.value=-18;master.ratio.value=8;master.connect(audio.destination)}if(!voice){voice=[];voiceGain=[];for(let i=0;i<3;i++){const osc=audio.createOscillator(),gain=audio.createGain();gain.gain.value=0;osc.connect(gain).connect(master);osc.start();voice.push(osc);voiceGain.push(gain)}}}
+async function ensureAudio(){
+const AudioContextClass=window.AudioContext||window.webkitAudioContext;
+if(!AudioContextClass)throw new Error('Web Audio is unavailable');
+if(!audio||audio.state==='closed'){audio=new AudioContextClass();master=null;voice=null;voiceGain=null}
+const resumed=audio.resume();
+if(!master){master=audio.createDynamicsCompressor();master.threshold.value=-18;master.ratio.value=8;master.connect(audio.destination)}
+if(!voice){voice=[];voiceGain=[];for(let i=0;i<3;i++){const osc=audio.createOscillator(),gain=audio.createGain();gain.gain.value=0;osc.connect(gain).connect(master);osc.start();voice.push(osc);voiceGain.push(gain)}}
+// Start a silent buffer within the tap itself to unlock mobile audio output.
+const unlock=audio.createBufferSource();unlock.buffer=audio.createBuffer(1,1,audio.sampleRate);unlock.connect(audio.destination);unlock.onended=()=>unlock.disconnect();unlock.start();
+await resumed;
+if(audio.state!=='running')throw new Error('Tap Play drawing to enable sound');
+}
+canvas.addEventListener('touchend',()=>{if(audio&&audio.state!=='running')ensureAudio().catch(()=>{$('status').textContent='Tap Play drawing to enable sound.'})},{passive:true});
 const minor=[0,2,3,5,7,8,10];
 function degree(y){return Math.max(0,Math.min(20,Math.round((1-y)*20)))}
 function midi(y){const d=degree(y);return 45+12*Math.floor(d/7)+minor[d%7]}
