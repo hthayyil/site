@@ -22,6 +22,8 @@ function end(){drawing=false;current=null;liveReady=false;liveToken++;silence()}
 function update(){$('status').textContent=playing?'Playing notes — keep drawing to add more.':strokes.length?strokes.length+' line'+(strokes.length===1?'':'s')+' of possibility.':'Draw to hear notes, or press play to start.'}
 function silence(){if(voiceGain&&audio)voiceGain.forEach(g=>g.gain.setTargetAtTime(0,audio.currentTime,.025))}
 async function ensureAudio(){
+// Use the music playback session rather than iOS ambient audio.
+try{if(navigator.audioSession)navigator.audioSession.type='playback'}catch{}
 const AudioContextClass=window.AudioContext||window.webkitAudioContext;
 if(!AudioContextClass)throw new Error('Web Audio is unavailable');
 if(!audio||audio.state==='closed'){audio=new AudioContextClass();master=null;voice=null;voiceGain=null}
@@ -30,7 +32,7 @@ if(!master){master=audio.createDynamicsCompressor();master.threshold.value=-18;m
 if(!voice){voice=[];voiceGain=[];for(let i=0;i<3;i++){const osc=audio.createOscillator(),gain=audio.createGain();gain.gain.value=0;osc.connect(gain).connect(master);osc.start();voice.push(osc);voiceGain.push(gain)}}
 // Start a silent buffer within the tap itself to unlock mobile audio output.
 const unlock=audio.createBufferSource();unlock.buffer=audio.createBuffer(1,1,audio.sampleRate);unlock.connect(audio.destination);unlock.onended=()=>unlock.disconnect();unlock.start();
-await resumed;
+let resumeTimeout;try{await Promise.race([resumed,new Promise((_,reject)=>{resumeTimeout=setTimeout(()=>reject(new Error('Sound is blocked. Tap Test sound to try again.')),2500)})])}finally{clearTimeout(resumeTimeout)}
 if(audio.state!=='running')throw new Error('Tap Play drawing to enable sound');
 }
 canvas.addEventListener('touchend',()=>{if(audio&&audio.state!=='running')ensureAudio().catch(()=>{$('status').textContent='Tap Play drawing to enable sound.'})},{passive:true});
@@ -162,7 +164,8 @@ function stop(){stopSounds();playing=false;clearTimeout(playTimer);playTimer=nul
 $('undo').onclick=()=>{end();stopSounds();strokes.pop();scoreDirty=true;update()};
 $('clear').onclick=()=>{end();stopSounds();strokes.length=0;scoreDirty=true;update()};
 $('tempo').oninput=()=>{$('tempoValue').textContent=$('tempo').value+' BPM'};
-$('play').onclick=async()=>{if(playing){stop();update();return}try{await ensureAudio();if(mode!=='music')return;startPlayback()}catch{$('status').textContent='Audio could not start. Try pressing play again.'}};
+$('testSound').onclick=async()=>{try{await ensureAudio();const t=audio.currentTime;playNote({y:.5,color:palette[1]},t+.02,.4,1);$('status').textContent='Test tone played. If silent, check volume, Silent Mode, and Bluetooth output.'}catch(error){$('status').textContent=error.message||'Sound could not start. Tap Test sound again.'}};
+$('play').onclick=async()=>{if(playing){stop();update();return}try{await ensureAudio();if(mode!=='music')return;startPlayback()}catch(error){$('status').textContent=error.message||'Audio could not start. Tap Test sound.'}};
 playbackHint();update();
 function render(now){const w=canvas.clientWidth,h=canvas.clientHeight;ctx.clearRect(0,0,w,h);for(const s of strokes){ctx.beginPath();s.points.forEach((p,i)=>{let x=p.x*w,y=p.y*h;if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);if(s.points.length===1)ctx.lineTo(x+.1,y+.1)});ctx.strokeStyle=s.color;ctx.lineWidth=s.width;ctx.lineCap='round';ctx.lineJoin='round';if(s.color==='#171717'){ctx.strokeStyle='#999';ctx.lineWidth=s.width+2;ctx.stroke();ctx.strokeStyle=s.color;ctx.lineWidth=s.width}ctx.stroke()}if(playing&&playbackMode==='continuous'){const progress=(continuousPosition+Math.max(0,audio.currentTime-continuousTime)/(60/+$('tempo').value*16))%1;ctx.beginPath();ctx.moveTo(progress*w,0);ctx.lineTo(progress*w,h);ctx.strokeStyle='#fff';ctx.lineWidth=1.5;ctx.stroke()}else if(playing){while(playheadMarks.length>1&&playheadMarks[1].time<=audio.currentTime)playheadMarks.shift();const mark=playheadMarks[0];if(mark&&mark.time<=audio.currentTime){if(playbackMode==='scan'){const progress=Math.min(1,(mark.step+Math.max(0,Math.min(1,(audio.currentTime-mark.time)/mark.length)))/STEPS);ctx.beginPath();ctx.moveTo(progress*w,0);ctx.lineTo(progress*w,h);ctx.strokeStyle='#fff';ctx.lineWidth=1.5;ctx.stroke()}else if(mark.point){ctx.beginPath();ctx.arc(mark.point.x*w,mark.point.y*h,8,0,Math.PI*2);ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke()}}}requestAnimationFrame(render)}requestAnimationFrame(render);
 $('save').onclick=()=>{const exportCanvas=document.createElement('canvas');exportCanvas.width=canvas.width;exportCanvas.height=canvas.height;const c=exportCanvas.getContext('2d');c.fillStyle='#080808';c.fillRect(0,0,exportCanvas.width,exportCanvas.height);c.drawImage(canvas,0,0);const a=document.createElement('a');a.download='lineplay-'+mode+'.png';a.href=exportCanvas.toDataURL('image/png');a.click();$('status').textContent='Your drawing has been saved.'};
